@@ -12,24 +12,25 @@ loadbuildlist::~loadbuildlist()
 
 void loadbuildlist::set_names(PC p) // Changed to a Q line edit to allow customizing the already made list
 {
+	the_PC = p;
 	name_labels = 
 	{
 		ui.cpuLabel,
 		ui.gpuLabel,
+		ui.storageLabel,
 		ui.ramLabel,
 		ui.moboLabel,
-		ui.storageLabel,
 		ui.psuLabel,
 	};
 
 	data_labels =
 	{
-		p.CPU,
-		p.GPU,
-		p.RAM,
-		p.Motherboard,
-		p.SSD,
-		p.PSU,
+		the_PC.CPU,
+		the_PC.GPU,
+		the_PC.SSD,
+		the_PC.RAM,
+		the_PC.Motherboard,
+		the_PC.PSU,
 	};
 
 	attribute_labels =
@@ -55,16 +56,22 @@ void loadbuildlist::set_names(PC p) // Changed to a Q line edit to allow customi
 }
 
 // Function to save changes for swapped out parts, and updates the Computer Build Roster and Component List
+
 void loadbuildlist::on_saveChanges_clicked() 
 {
 	for (size_t i = 0; i < 6; ++i)
 	{
 		data_labels[i]->fullname = name_labels[i]->text().toStdString(); 
-		// Changing the parameters actual value to what is currently in the textbox
-
-		name_labels[i]->setText(QString::fromStdString(data_labels[i]->fullname)); 
-		// Set the textbox to the parameters actual name value. When the list is clicked on again, it will load the parameters real values	
+		name_labels[i]->setText(QString::fromStdString(data_labels[i]->fullname));
 
 		this->close();
 	}
+
+	PC* p = new PC(the_PC);
+	SQLParsing q;
+
+	p->CPU->attributes.clear();
+	q.CPU_Specs(p, p->CPU, "Processor");
+
+	delete p;
 }

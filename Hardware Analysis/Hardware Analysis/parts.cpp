@@ -76,7 +76,7 @@ QString Component::print_components()
 	std::ostringstream ss;
 	for (auto& i : this->attributes)
 	{
-		ss << "-- " << i << std::endl;
+		ss << "- " << i << std::endl;
 	}
 	QString result = QString::fromStdString(ss.str());
 	return result;

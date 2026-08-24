@@ -27,5 +27,6 @@ private slots:
 
 private:
 	Ui::loadbuildlistClass ui;
+	PC the_PC;
 };
 

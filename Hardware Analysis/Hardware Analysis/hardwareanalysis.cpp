@@ -79,13 +79,3 @@ void HardwareAnalysis::on_addButton_clicked() // After enetering in each compone
 	status = false; 
 	// The 'status' bool (created in newlymadelist.h, will prevent a list from being made when selecting 'x' on the keyboard.
 }
-
-
-
-// Test query
-/*
-if (p.CPU->fullname == l.sql_parse()[0])
-{
-	p.CPU->attributes.push_back(p.createAttribute("Cores", "16");
-}
-*/

@@ -17,7 +17,8 @@ public:
 	NewList(QWidget *parent = nullptr);
 	~NewList();
 	void set_name();
-	QVector<QString> sql_parse();
+	QVector<QString> sql_parse(QString component);
+	std::vector<QLineEdit*> name_labels;
 
 private slots:
 	void on_okButton_clicked();

@@ -6,10 +6,11 @@
 
 // SQL test to grab information from the Database. The function below autofills with the grabbed information
 
-QVector<QString> NewList::sql_parse() 
+QVector<QString> NewList::sql_parse(QString component) 
 {
 	QSqlQuery query;
-	query.exec("SELECT Processor_Name FROM Computer_Processor"); 
+	query.prepare("SELECT " + component + "_Name FROM Computer_" + component); 
+	query.exec();
 
 	QVector<QString> names;
 	while (query.next())
@@ -29,10 +30,25 @@ NewList::NewList(QWidget *parent)
 
 	// Autofill completion for when user enters in a component: 
 
-	QCompleter* list = new QCompleter(sql_parse(), this);
-	list->setCaseSensitivity(Qt::CaseInsensitive);
+	std::vector<std::string> labels = { "Processor","Graphics","Storage","RAM","Motherboard","PSU" };
 
-	ui.cpuInput->setCompleter(list);
+	name_labels =
+	{
+		ui.cpuInput,
+		ui.gpuInput,
+		ui.storageInput,
+		ui.memoryInput,
+		ui.motherboardInput,
+		ui.psuInput
+	};
+
+	for (size_t i = 0; i < 6; i++)
+	{
+		QCompleter* list = new QCompleter(sql_parse(QString::fromStdString(labels[i])), this);
+		list->setCaseSensitivity(Qt::CaseInsensitive);
+
+		name_labels[i]->setCompleter(list);
+	}
 }
 
 

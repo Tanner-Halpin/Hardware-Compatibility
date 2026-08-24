@@ -111,17 +111,18 @@ PC* Build::newPC(std::vector<std::string> names) // This will return a PC list w
 	while (true)
 	{
 		Component** compList[6] = { &build->CPU, &build->GPU, &build->SSD, &build->RAM, &build->Motherboard, &build->PSU };
+		std::vector<QString> terms = { "Processor", "Graphics", "Storage", "RAM", "Motherboard", "PSU" };
+
+		SQLParsing q;
 
 		for (size_t i = 0; i < std::size(compList); i++)
 		{
 			*compList[i] = CreateItem(names[i]);
+			q.CPU_Specs(build, *compList[i], terms[i]);
 		}
 
 		buildRoster.push_back(*build);
 		count = 0;
-
-		SQLParsing q;
-		q.CPU_Specs(build);
 	
 		delete build;
 		build = nullptr;

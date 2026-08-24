@@ -8,7 +8,11 @@
 class SQLParsing 
 {
 public:
-	void CPU_Specs(PC* p);
+	void CPU_Specs(PC* p, Component* component, QString processor);
+
+private: 
+	PC* the_PC;
+	int size_table;
 };
 
 #endif
