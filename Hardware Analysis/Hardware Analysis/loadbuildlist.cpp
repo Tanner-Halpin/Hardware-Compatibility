@@ -59,19 +59,23 @@ void loadbuildlist::set_names(PC p) // Changed to a Q line edit to allow customi
 
 void loadbuildlist::on_saveChanges_clicked() 
 {
+	std::vector<QString> terms = { "Processor", "Graphics", "Storage", "RAM", "Motherboard", "PSU" };
+	PC* p = new PC(the_PC);
+
+	Component* compList[6] = { p->CPU, p->GPU, p->SSD, p->RAM, p->Motherboard, p->PSU };
+
+	SQLParsing q;
+
 	for (size_t i = 0; i < 6; ++i)
 	{
-		data_labels[i]->fullname = name_labels[i]->text().toStdString(); 
+		data_labels[i]->fullname = name_labels[i]->text().toStdString();
 		name_labels[i]->setText(QString::fromStdString(data_labels[i]->fullname));
+
+		compList[i]->attributes.clear();
+		q.CPU_Specs(p, compList[i], terms[i]);
 
 		this->close();
 	}
-
-	PC* p = new PC(the_PC);
-	SQLParsing q;
-
-	p->CPU->attributes.clear();
-	q.CPU_Specs(p, p->CPU, "Processor");
 
 	delete p;
 }
