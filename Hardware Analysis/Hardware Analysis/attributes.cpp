@@ -13,9 +13,19 @@ Attribute Attribute::createAttribute(std::string attribute, std::string value) /
 	return a;
 }
 
+std::string Attribute::get_attribute()
+{
+	return m_attribute;
+}
+
+std::string Attribute::get_value()
+{
+	return m_value;
+}
+
 std::ostream& operator<<(std::ostream& out, Attribute& a) // Output a an individual component attribute
 {
-	out << a.m_attribute << ":  " << a.m_value;
+	out << a.m_attribute << ":   " << a.m_value;
 	return out;
 }
 

@@ -52,6 +52,16 @@
       <string/>
      </property>
     </widget>
+    <widget class="QTableView" name="cpuTableView">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>71</y>
+       <width>461</width>
+       <height>271</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
@@ -78,6 +88,16 @@
      </property>
      <property name="text">
       <string/>
+     </property>
+    </widget>
+    <widget class="QTableView" name="gpuTableView">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>71</y>
+       <width>461</width>
+       <height>271</height>
+      </rect>
      </property>
     </widget>
    </widget>
@@ -108,6 +128,16 @@
       <string/>
      </property>
     </widget>
+    <widget class="QTableView" name="storageTableView">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>71</y>
+       <width>461</width>
+       <height>271</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_5">
     <attribute name="title">
@@ -134,6 +164,16 @@
      </property>
      <property name="text">
       <string/>
+     </property>
+    </widget>
+    <widget class="QTableView" name="ramTableView">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>71</y>
+       <width>461</width>
+       <height>271</height>
+      </rect>
      </property>
     </widget>
    </widget>
@@ -164,6 +204,16 @@
       <string/>
      </property>
     </widget>
+    <widget class="QTableView" name="moboTableView">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>71</y>
+       <width>461</width>
+       <height>271</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_6">
     <attribute name="title">
@@ -190,6 +240,16 @@
      </property>
      <property name="text">
       <string/>
+     </property>
+    </widget>
+    <widget class="QTableView" name="psuTableView">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>71</y>
+       <width>461</width>
+       <height>271</height>
+      </rect>
      </property>
     </widget>
    </widget>

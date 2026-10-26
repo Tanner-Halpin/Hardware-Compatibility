@@ -1,4 +1,6 @@
 #include "loadbuildlist.h"
+#include <qtableview.h>
+#include <qstandarditemmodel.h>
 
 loadbuildlist::loadbuildlist(QWidget *parent)
 	: QDialog(parent)
@@ -9,6 +11,8 @@ loadbuildlist::loadbuildlist(QWidget *parent)
 loadbuildlist::~loadbuildlist()
 {
 }
+
+QStandardItemModel* model = new QStandardItemModel(0, 2);
 
 void loadbuildlist::set_names(PC p) // Changed to a Q line edit to allow customizing the already made list
 {
@@ -43,6 +47,16 @@ void loadbuildlist::set_names(PC p) // Changed to a Q line edit to allow customi
 		ui.label_6
 	};
 
+	tableview_labels =
+	{
+		ui.cpuTableView,
+		ui.gpuTableView,
+		ui.storageTableView,
+		ui.ramTableView,
+		ui.moboTableView,
+		ui.psuTableView
+	};
+
 	for (size_t i = 0; i < 6; ++i)
 	{
 		std::stringstream ss;
@@ -52,6 +66,23 @@ void loadbuildlist::set_names(PC p) // Changed to a Q line edit to allow customi
 
 		name_labels[i]->setText(s);
 		attribute_labels[i]->setText(data_labels[i]->print_components());
+
+		model = new QStandardItemModel(0, 2);
+		for (int j = 0; j < data_labels[i]->attributes.size(); ++j)
+		{
+			QList<QStandardItem*> items;
+
+			items.append(new QStandardItem(data_labels[i]->get_attribute(j)));
+			items.append(new QStandardItem(data_labels[i]->get_value(j)));
+
+			model->setColumnCount(2);
+			model->appendRow(items);
+		}
+
+		tableview_labels[i]->setModel(model);
+		tableview_labels[i]->setEditTriggers(QAbstractItemView::NoEditTriggers);
+		tableview_labels[i]->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+		tableview_labels[i]->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 	}
 }
 
@@ -76,6 +107,5 @@ void loadbuildlist::on_saveChanges_clicked()
 
 		this->close();
 	}
-
 	delete p;
 }

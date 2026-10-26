@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include "loadbuildlist.h"
+#include "qstandarditemmodel.h"
 #include "parts.h"
 
 std::ostream& operator<<(std::ostream& out, Component& c) // Display a component 
@@ -69,15 +71,26 @@ void Parts::getProcessor(std::string command) // Powershell command for displayi
 // The format above is meant for searching for specific parts by company(AMD, Intel, NVIDIA), the type (Ryzen, Intel Core, Xeon, Radeon), version( i7, Ryzen 8, etc), and model (i5-10600k)
 
 
+QString Component::get_attribute(int index) 
+{
+	return QString::fromStdString(this->attributes[index].get_attribute());
+}
+
+QString Component::get_value(int index)
+{
+	return QString::fromStdString(this->attributes[index].get_value());
+}
+
 // Print component attributes:
 
-QString Component::print_components() 
+QString Component::print_components()
 {
 	std::ostringstream ss;
 	for (auto& i : this->attributes)
 	{
-		ss << "- " << i << std::endl;
+		ss << i.get_attribute() << ":  " << i.get_value() << std::endl;
 	}
+
 	QString result = QString::fromStdString(ss.str());
 	return result;
 }

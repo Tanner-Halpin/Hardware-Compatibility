@@ -21,6 +21,7 @@ public:
 	std::vector<QLineEdit*> name_labels;
 	std::vector<QLabel*> attribute_labels;
 	std::vector<Component*> data_labels;
+	std::vector<QTableView*> tableview_labels;
 
 private slots:
 	void on_saveChanges_clicked();

@@ -9,6 +9,8 @@ struct Component
 	std::string company="", type="", version="", model="";
 	std::vector<Attribute> attributes;
 	QString print_components();
+	QString get_attribute(int index);
+	QString get_value(int index);
 };
 
 std::ostream& operator<<(std::ostream& out, Component& c);
