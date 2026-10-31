@@ -7,7 +7,7 @@
 
 std::ostream& operator<<(std::ostream& out, Component& c) // Display a component 
 {
-	out << c.fullname << std::endl;
+	out << c.fullname;
 	return out;
 }
 
@@ -62,7 +62,7 @@ void Parts::getProcessor(std::string command) // Powershell command for displayi
 	process.waitForFinished();
 	QString output = process.readAllStandardOutput();
 
-	gathered_parts.push_back(output);
+	gathered_parts.push_back(output.trimmed());
 }
 
 // //out << c.company << " " << c.type << " " << c.version << " " << c.model << "\n";
