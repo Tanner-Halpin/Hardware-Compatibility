@@ -24,7 +24,7 @@ HardwareAnalysis::HardwareAnalysis(QWidget *parent)
 
 	for (size_t i = 0; i < p.gathered_parts.size(); ++i) 
 	{
-		ui.addressName->addItem(parts[i] + p.gathered_parts[i]);
+		ui.addressName->addItem(p.gathered_parts[i]); // parts[i] + p.gathered_parts[i]
 	}
 }
 
